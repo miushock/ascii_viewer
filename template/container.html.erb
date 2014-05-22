@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="js_lib/opal.js"></script>
+  <script src="js_lib/asciidoctor.js"></script>
+  <script src="js_lib/freelog_util.js"></script>
+  <link type="text/css" href="css_lib/asciidoctor.css" rel="stylesheet" />
+  <script type="text/javascript">
+    $(document).ready (function (){
+        <%= @widget_name %>.init();
+    });
+
+  </script>
+  </head>
+  <body>
+  <div id=" <%= @widget_name_camel %>">
+  </div>
+  </body>
+</html>
