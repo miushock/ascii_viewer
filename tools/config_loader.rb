@@ -9,6 +9,7 @@ module ConfigLoader
       hash.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
+      instance_variable_set("@env", hash)
     end
 
     def get_binding

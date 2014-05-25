@@ -1,0 +1,11 @@
+if (ENV == null || typeof (ENV)!= "object"){
+  var ENV = {}
+}
+
+  <% @env.each do |key, val| %>
+    <% if (val.is_a? String) %>
+      ENV.<%= key %> = '<%= val %>';
+    <% else %>
+      ENV.<%= key %> = <%= val %>;
+    <% end %>
+  <% end %>

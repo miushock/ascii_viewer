@@ -15,6 +15,12 @@ Freelog.ResourceUtil.retrive_resource = function (resource_id, callback){
   $.getJSON(url, callback);
 }
 
+//Retrive single resource in JSONP
+Freelog.ResourceUtil.retrive_resource_jsonp = function (resource_id, callback){
+  var url = 'http://127.0.0.1:3000/resources/'+resource_id+".jsonp?callback=?";
+  $.getJSON(url, callback);
+}
+
 //Rerive metadata of resources as specified by options
 //options are all optional, can be empty object
 //options are:
