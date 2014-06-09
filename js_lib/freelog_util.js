@@ -2,8 +2,9 @@ if (Freelog == null || typeof(Freelog)!= "object"){
   var Freelog = {}
 }
 
-Freelog.resource_bucket_url = "/resource_bucket/";
-Freelog.node_name = "carrotmoji";
+Freelog.resource_bucket_url = "http://"+ENV["host_address"]+":"+ENV["port"]+"/"+ENV["bucket_path"];
+Freelog.resource_info_path = "http://"+ENV["host_address"]+":"+ENV["port"]+"/resources";
+Freelog.node_name = ENV["node"];
 
 //Namespace for resource related tools
 Freelog.ResourceUtil = {}
@@ -17,7 +18,7 @@ Freelog.ResourceUtil.retrive_resource = function (resource_id, callback){
 
 //Retrive single resource in JSONP
 Freelog.ResourceUtil.retrive_resource_jsonp = function (resource_id, callback){
-  var url = 'http://127.0.0.1:3000/resources/'+resource_id+".jsonp?callback=?";
+  var url = Freelog.resource_info_path + "/" + resource_id + ".jsonp?callback=?";
   $.getJSON(url, callback);
 }
 
@@ -42,5 +43,21 @@ Freelog.ResourceUtil.retrive_resources_info = function (options){
   }
 
   //ajax call to get resources info in json
-  $.getJSON('/resources', params, options["callback"])
+  $.getJSON(Freelog.resource_info_path, params, options["callback"])
 }
+
+//jsonp version
+Freelog.ResourceUtil.retrive_resources_info_jsonp = function (options){
+  var params = { "node":Freelog.node_name }
+  if (typeof options == "object" && options != null){
+    if (options["resource_type"] != null){
+      params["resource_type"] = options["resource_type"];
+    }
+    if (options["limit"] != null){
+      params["limit"] = options["limit"];
+    }
+  }
+
+  $.getJSON(Freelog.resource_info_path+".jsonp?callback=?", params, options["callback"])
+}
+

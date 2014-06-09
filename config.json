@@ -1,5 +1,7 @@
 {
-  "url":"127.0.0.1",
+  "host_address":"127.0.0.1",
+  "bucket_path":"resource_bucket/",
+  "resource_path":"resource/",
   "port":3000,
   "node":"carrotmoji",
   "widget_name":"ascii_viewer",
