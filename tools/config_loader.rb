@@ -17,11 +17,18 @@ module ConfigLoader
     end
   end
 
-  def self.load_config_file
+  def self.load_config
     File.open('config.json','r') do |file|
       @hash = JSON.parse(file.read)
     end
-
+    
+    widget_name = @hash['widget_name']
+    @subhash = {
+      'widget_html_content' => File.open("#{widget_name}.html","rb").read,
+      'widget_css_content' => File.open("#{widget_name}.css","rb").read,
+      'widget_javascript_content' => File.open("#{widget_name}.js","rb").read,
+    }
+    @hash.merge!(@subhash)
     binding_factory = BindingFactory.new (@hash)
     @binding = binding_factory.get_binding
   end
@@ -34,6 +41,6 @@ module ConfigLoader
     return @hash
   end
 
-  load_config_file
+  load_config
 
 end
