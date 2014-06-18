@@ -1,5 +1,7 @@
 #AsciiViewer {
   height: 800px;
-  width: 400px;
-  background-color: blue;
+  width: 1024px;
+  border-style:solid;
+  border-color: blue;
+  border-width: 2px;
 }
