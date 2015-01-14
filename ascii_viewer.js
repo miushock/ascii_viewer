@@ -28,11 +28,12 @@ AsciiViewer.Viewer.prototype.loadPrev = function () {
 }
 
 AsciiViewer.Viewer.prototype.refresh = function () {
-  alert (this.current_article);
   if (this.articles.length > 0){
     var ascii_source = this.articles[this.current_article].content;
+    alert(ascii_source);
     var html_target = Opal.Asciidoctor.$render(ascii_source, Opal.hash2(['attributes'], {"attributes":['showtitle']}));
     $('#view-port', '#AsciiViewer').html(html_target);
+    alert(html_target);
   }
 }
 
